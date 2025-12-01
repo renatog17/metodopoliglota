@@ -19,7 +19,7 @@ public class TokenService {
 
 	public String generateToken(UserDetails user) {
 		return JWT.create().withSubject(user.getUsername()).withIssuer("api").withIssuedAt(new Date())
-				.withExpiresAt(Date.from(Instant.now().plus(1, ChronoUnit.HOURS))).sign(ALGORITHM);
+				.withExpiresAt(Date.from(Instant.now().plus(24, ChronoUnit.HOURS))).sign(ALGORITHM);
 	}
 
 	public String getSubject(String token) {
