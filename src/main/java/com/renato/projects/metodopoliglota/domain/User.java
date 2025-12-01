@@ -1,7 +1,5 @@
 package com.renato.projects.metodopoliglota.domain;
 
-import com.renato.projects.metodopoliglota.controller.dto.user.PostUserDTO;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,9 +28,5 @@ public class User {
     private String password;
     private String name;
 
-    public User(PostUserDTO postUserDTO) {
-    	this.email = postUserDTO.email();
-    	this.password = 
-    	this.name = postUserDTO.name();
-    }
+   
 }
