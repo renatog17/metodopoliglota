@@ -13,6 +13,8 @@ import com.renato.projects.metodopoliglota.controller.dto.user.PostUserDTO;
 import com.renato.projects.metodopoliglota.domain.User;
 import com.renato.projects.metodopoliglota.service.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -25,7 +27,7 @@ public class UserController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<?> postUser(@RequestBody PostUserDTO postUserDTO, UriComponentsBuilder uriComponentsBuilder){
+	public ResponseEntity<?> postUser(@RequestBody @Valid PostUserDTO postUserDTO, UriComponentsBuilder uriComponentsBuilder){
 		User user = userService.save(postUserDTO);
 		URI uri = uriComponentsBuilder
 				.path("/user/{id}")
