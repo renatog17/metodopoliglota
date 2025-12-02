@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/email")
-public class ConfirmEmail {
+public class ConfirmEmailController {
 
 	@GetMapping("/confirm")
 	public ResponseEntity<?> confirmEmail(){

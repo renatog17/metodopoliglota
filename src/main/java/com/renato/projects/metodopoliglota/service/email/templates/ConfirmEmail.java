@@ -1,8 +1,11 @@
 package com.renato.projects.metodopoliglota.service.email.templates;
 
+import org.springframework.stereotype.Service;
+
 import com.renato.projects.metodopoliglota.service.email.EmailData;
 import com.renato.projects.metodopoliglota.service.email.context.ConfirmEmailContext;
 
+@Service
 public class ConfirmEmail implements IEmailTemplate<ConfirmEmailContext>{
 
 

@@ -31,13 +31,10 @@ public class User {
 	private String email;
 	private String password;
 	private String name;
-
 	@Column(nullable = false)
 	private boolean verified = false;
-
 	@Column(unique = true)
 	private String verificationToken;
-
 	@Column
 	private Instant tokenExpiry;
 
