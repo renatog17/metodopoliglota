@@ -9,4 +9,5 @@ import com.renato.projects.metodopoliglota.domain.User;
 public interface UserRepository extends JpaRepository<User, Long>{
 
 	Optional<User> findByEmail(String email);
+	Optional<User> findByVerificationToken(String verificationToken);
 }

@@ -28,7 +28,7 @@ public class UserController {
 	
 	@PostMapping
 	public ResponseEntity<?> postUser(@RequestBody @Valid PostUserDTO postUserDTO, UriComponentsBuilder uriComponentsBuilder){
-		User user = userService.save(postUserDTO);
+		User user = userService.save(postUserDTO.toModel());
 		URI uri = uriComponentsBuilder
 				.path("/user/{id}")
 				.buildAndExpand(user.getId())

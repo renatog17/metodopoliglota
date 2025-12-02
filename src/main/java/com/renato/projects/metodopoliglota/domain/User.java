@@ -1,5 +1,7 @@
 package com.renato.projects.metodopoliglota.domain;
 
+import java.time.Instant;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,15 +22,27 @@ import lombok.Setter;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Table(name = "users")
 public class User {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
 	private Long id;
 	@Column(unique = true, nullable = false)
 	private String email;
-    private String password;
-    private String name;
+	private String password;
+	private String name;
 
-   
+	@Column(nullable = false)
+	private boolean verified = false;
+
+	@Column(unique = true)
+	private String verificationToken;
+
+	@Column
+	private Instant tokenExpiry;
+
+	public User(String email, String password) {
+		this.email = email;
+		this.password = password;
+	}
 }

@@ -1,5 +1,7 @@
 package com.renato.projects.metodopoliglota.controller.dto.user;
 
+import com.renato.projects.metodopoliglota.domain.User;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -11,4 +13,8 @@ public record PostUserDTO(
 		@NotBlank(message = "Password is mandatory")
 		@Size(min = 8, max = 16)
 		String password) {
+
+	public User toModel() {
+		return new User(email, password);
+	}
 }
