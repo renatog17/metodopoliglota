@@ -43,6 +43,7 @@ public class SecurityConfig {
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/user").permitAll()
                         .requestMatchers("/email/**").permitAll()
+                        .requestMatchers("/password/**").permitAll()
                         //.requestMatchers("/user").authenticated()
                         .anyRequest().authenticated()
                 )

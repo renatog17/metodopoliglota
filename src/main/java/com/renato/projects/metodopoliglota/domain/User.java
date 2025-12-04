@@ -31,12 +31,21 @@ public class User {
 	private String email;
 	private String password;
 	private String name;
+	//Email{
 	@Column(nullable = false)
 	private boolean verified = false;
 	@Column(unique = true)
 	private String verificationToken;
 	@Column
 	private Instant tokenExpiry;
+	//}fim email
+	//senha{
+	@Column(unique = true)
+    private String passwordResetToken;
+    @Column
+    private Instant passwordResetTokenExpiry;
+    //}fim senha
+	
 
 	public User(String email, String password) {
 		this.email = email;
