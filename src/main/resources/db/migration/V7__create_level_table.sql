@@ -1,0 +1,4 @@
+CREATE TABLE level (
+    id BIGSERIAL PRIMARY KEY,
+    level_code VARCHAR(10) NOT NULL
+);
