@@ -8,12 +8,31 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.server.ResponseStatusException;
 
 import jakarta.servlet.http.HttpServletRequest;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    @ExceptionHandler(ResponseStatusException.class)
+    public ResponseEntity<ApiError> handleResponseStatusException(
+            ResponseStatusException ex,
+            HttpServletRequest request) {
+
+        HttpStatus status = (HttpStatus) ex.getStatusCode();
+
+        ApiError error = new ApiError(
+                status.value(),
+                status.getReasonPhrase(),
+                ex.getReason(),
+                null,                    // field (se quiser algo específico)
+                request.getRequestURI()
+        );
+
+        return ResponseEntity.status(status).body(error);
+    }
+	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<List<ApiError>> handleValidationExceptions(MethodArgumentNotValidException ex,
 			HttpServletRequest request) {

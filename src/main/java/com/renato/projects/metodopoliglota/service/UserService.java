@@ -2,10 +2,13 @@ package com.renato.projects.metodopoliglota.service;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.renato.projects.metodopoliglota.domain.User;
 import com.renato.projects.metodopoliglota.repository.UserRepository;
@@ -31,6 +34,14 @@ public class UserService {
 	}
 
 	public User save(User user) {
+		Optional<User> optionalUser = userRepository.findByEmail(user.getEmail());
+		if(optionalUser.isPresent()) {
+			throw new ResponseStatusException(
+	                HttpStatus.CONFLICT,
+	                "Email already exists: " + user.getEmail()
+	        );
+		}
+		
 		//salvar{
 		user.setPassword(encoder.encode(user.getPassword()));
 		user.setVerified(false);
