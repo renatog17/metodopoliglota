@@ -7,6 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.renato.projects.metodopoliglota.controller.dto.deck.ReadDeckDTO;
+import com.renato.projects.metodopoliglota.controller.dto.language.ReadLanguageDTO;
 import com.renato.projects.metodopoliglota.controller.dto.lexeme.ReadLexemeDTO;
 import com.renato.projects.metodopoliglota.domain.Deck;
 import com.renato.projects.metodopoliglota.domain.Lexeme;
@@ -35,7 +36,7 @@ public class DeckService {
 			    .map(deck -> new ReadDeckDTO(
 			        deck.getId(),
 			        deck.getCreatedAt(),
-			        deck.getLanguage(),
+			        new ReadLanguageDTO(deck.getLanguage()),
 			        deck.getName(),
 			        deck.getDescription(),
 			        deck.getDeckLexeme().stream()
