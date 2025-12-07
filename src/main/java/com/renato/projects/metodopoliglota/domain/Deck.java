@@ -40,4 +40,15 @@ public class Deck {
 	private User user;
 	@OneToMany(mappedBy = "deck", fetch = FetchType.LAZY)
 	private List<DeckLexeme> deckLexeme;
+	
+	public Deck(Language language, String name, String description, User user) {
+		super();
+		this.createdAt = LocalDateTime.now();
+		this.language = language;
+		this.name = name;
+		this.description = description;
+		this.user = user;
+	}
+	
+	
 }

@@ -6,6 +6,8 @@ import java.util.List;
 import com.renato.projects.metodopoliglota.domain.enums.LanguageCode;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,6 +32,7 @@ public class Language{
 @EqualsAndHashCode.Include
 private Long id;
 private String nativeName;
+@Enumerated(EnumType.STRING)
 private LanguageCode languageCode;
 
 @OneToMany(mappedBy = "language", fetch = FetchType.LAZY)

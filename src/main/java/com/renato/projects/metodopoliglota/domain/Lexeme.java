@@ -34,4 +34,20 @@ public class Lexeme {
 	private List<LexemeLevel> lexemeLevel;
 	@OneToMany(mappedBy = "lexeme", fetch = FetchType.LAZY)
 	private List<DeckLexeme> deckLexeme;
+
+	public Lexeme(String lexeme, String description, List<LexemeLevel> lexemeLevel,
+			List<DeckLexeme> deckLexeme) {
+		super();
+		this.createdAt = LocalDateTime.now();
+		this.lexeme = lexeme;
+		this.description = description;
+		this.lexemeLevel = lexemeLevel;
+		this.deckLexeme = deckLexeme;
+	}
+
+	public Lexeme(String lexeme, String description) {
+		this.createdAt = LocalDateTime.now();
+		this.lexeme = lexeme;
+		this.description = description;
+	}
 }

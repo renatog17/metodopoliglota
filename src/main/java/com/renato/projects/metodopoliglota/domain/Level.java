@@ -5,6 +5,8 @@ import java.util.List;
 import com.renato.projects.metodopoliglota.domain.enums.LevelCode;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,6 +30,7 @@ public class Level {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
 	private Long id;
+	@Enumerated(EnumType.STRING)
 	private LevelCode levelCode;
 	@OneToMany(mappedBy = "level", fetch = FetchType.LAZY)
 	private List<LexemeLevel> lexemeLevel;

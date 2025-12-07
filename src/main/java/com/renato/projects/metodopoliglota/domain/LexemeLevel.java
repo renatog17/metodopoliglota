@@ -31,4 +31,9 @@ public class LexemeLevel {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "level_id")
 	private Level level;
+
+	public LexemeLevel(Lexeme lexeme, Level level) {
+		this.level = level;
+		this.lexeme = lexeme;
+	}
 }

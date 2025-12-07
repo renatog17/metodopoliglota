@@ -15,20 +15,39 @@ import jakarta.servlet.http.HttpServletRequest;
 public class GlobalExceptionHandler {
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<List<ApiError>> handleValidationExceptions(
-            MethodArgumentNotValidException ex,
-            HttpServletRequest request) {
+	public ResponseEntity<List<ApiError>> handleValidationExceptions(MethodArgumentNotValidException ex,
+			HttpServletRequest request) {
 
-        List<ApiError> errors = ex.getBindingResult().getFieldErrors().stream()
-                .map(err -> new ApiError(
-                        HttpStatus.BAD_REQUEST.value(),
-                        HttpStatus.BAD_REQUEST.getReasonPhrase(),
-                        err.getDefaultMessage(),
-                        err.getField(),
-                        request.getRequestURI()
-                ))
-                .collect(Collectors.toList());
+		List<ApiError> errors = ex.getBindingResult().getFieldErrors().stream()
+				.map(err -> new ApiError(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase(),
+						err.getDefaultMessage(), err.getField(), request.getRequestURI()))
+				.collect(Collectors.toList());
 
-        return ResponseEntity.badRequest().body(errors);
-    }
+		return ResponseEntity.badRequest().body(errors);
+	}
+
+	@ExceptionHandler(DeckNotFoundException.class)
+	public ResponseEntity<ApiError> handleDeckNotFoundException(DeckNotFoundException ex, HttpServletRequest request) {
+		ApiError error = new ApiError(HttpStatus.NOT_FOUND.value(), "Not Found", ex.getMessage(), "deckId",
+				request.getRequestURI());
+
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+	}
+	
+	@ExceptionHandler(LanguageNotFoundException.class)
+	public ResponseEntity<ApiError> handleLanguageNotFoundException(LanguageNotFoundException ex, HttpServletRequest request) {
+		ApiError error = new ApiError(HttpStatus.NOT_FOUND.value(), "Not Found", ex.getMessage(), "language code",
+				request.getRequestURI());
+
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+	}
+	
+	@ExceptionHandler(LevelNotFoundException.class)
+	public ResponseEntity<ApiError> handleLevelNotFoundException(LevelNotFoundException ex, HttpServletRequest request) {
+		ApiError error = new ApiError(HttpStatus.NOT_FOUND.value(), "Not Found", ex.getMessage(), "level code",
+				request.getRequestURI());
+
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+	}
+
 }

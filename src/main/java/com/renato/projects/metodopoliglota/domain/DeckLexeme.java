@@ -31,4 +31,9 @@ public class DeckLexeme {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "lexeme_id")
 	private Lexeme lexeme;
+	
+	public DeckLexeme(Deck deck, Lexeme lexeme) {
+		this.deck = deck;
+		this.lexeme = lexeme;
+	}
 }
