@@ -3,6 +3,10 @@
 Este é o backend do projeto **KitCard**, um aplicativo de flashcards para aprendizado de idiomas.  
 A API foi construída seguindo boas práticas de arquitetura, segurança e validação, utilizando **Java 21** e **Spring Boot 3 / Spring Framework 6**.
 
+## Related Repositories
+
+- Frontend: [Método Poliglota](https://github.com/renatog17/metodopoliglota-front)
+
 ---
 
 ## 🚀 Tecnologias Utilizadas
