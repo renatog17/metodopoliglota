@@ -83,4 +83,8 @@ public class LexemeService {
 		return lexeme;
 	}
 
+	public void deleteLexeme(Long id) {
+		lexemeRepository.deleteById(id);
+	}
+
 }
